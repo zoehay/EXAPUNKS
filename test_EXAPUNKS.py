@@ -1,9 +1,11 @@
 #from re import X
 #from tempfile import TemporaryFile 
 #import EXAPUNKS_functions
-from codecs import register
-from EXAPUNKS_functions import *
+#from codecs import register
+#from EXAPUNKS_functions import *
 #from EXAPUNKS_functions import regs, copy, addi
+import EXAPUNKS_functions as exafunc
+import EXAPUNKS_data as exadata
 
 #unit function testing
 #words[0] should be instruction, check if valid instruction 
@@ -13,22 +15,22 @@ from EXAPUNKS_functions import *
 # test codes behavior with good inputs
 
 def test_copy():
-    assert copy(70, regs['X']) == 70
+    assert exafunc.copy(70, exadata.regs['X']) == 70
 
 def test_addi():
-    assert addi(regs['X'], 1, regs['X']) == regs['X'] + 1
+    assert exafunc.addi(exadata.regs['X'], 1, exadata.regs['X']) == exadata.regs['X'] + 1
  
 def test_subi():
-    assert subi(regs['X'], 1, regs['T']) == regs['X'] -1
+    assert exafunc.subi(exadata.regs['X'], 1, exadata.regs['T']) == exadata.regs['X'] -1
 
 def test_muli():
-    assert muli(regs['T'], regs['X'], regs['T']) == regs['T'] * regs['X']
+    assert exafunc.muli(exadata.regs['T'], exadata.regs['X'], exadata.regs['T']) == exadata.regs['T'] * exadata.regs['X']
 
 def test_divi():
-    assert divi(regs['T'], regs['X'], regs['T']) == regs['T'] / regs['X']
+    assert exafunc.divi(exadata.regs['T'], exadata.regs['X'], exadata.regs['T']) == exadata.regs['T'] / exadata.regs['X']
 
 def test_modi():
-    assert modi(regs['X'], 2, regs['T']) == regs['X'] % 2
+    assert exafunc.modi(exadata.regs['X'], 2, exadata.regs['T']) == exadata.regs['X'] % 2
 
 
 # input testing
@@ -36,7 +38,7 @@ def test_modi():
     # test invalid code
 def test_invalid_code_gernerates_exception():
     try:
-        copy('hello', 1, regs['X'])
+        exafunc.copy('hello', 1, exadata.regs['X'])
     except ValueError:
         assert True 
 
@@ -47,7 +49,7 @@ def test_invalid_code_gernerates_exception():
 
 def test_valid_code_invalid_input_generates_exception():
     try:
-        addi(regs['X'], 'a', regs['X'])
+        exafunc.addi(exadata.regs['X'], 'a', exadata.regs['X'])
     except ValueError:
         assert True
 
@@ -55,7 +57,7 @@ def test_valid_code_invalid_input_generates_exception():
     # test
 def test_valid_code_valid_input_invalid_reg_generates_exception():
     try:
-        addi(regs['X'], 2, 3)
+        exafunc.addi(exadata.regs['X'], 2, 3)
     except ValueError:
         assert True
 

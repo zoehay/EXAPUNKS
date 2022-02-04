@@ -1,4 +1,5 @@
-from EXAPUNKS_main import regs, codes
+import EXAPUNKS_data as exadata
+
 
 #print(instructions, end= '')                
 def read_lines(instructions):
@@ -16,7 +17,7 @@ def read_lines(instructions):
 
 def validate_instructions(instr):
     '''takes a tuple as an argument and checks the instruction and operands'''
-    if instr[0] in codes:
+    if instr[0] in exadata.code:
         #check case of copy
         if instr[0] == 'copy':
             check_copy_code(instr)
@@ -25,7 +26,7 @@ def validate_instructions(instr):
 
 
 def check_reg_or_num(arg):
-    if arg in codes or type(arg) is int:
+    if arg in exadata.code or type(arg) is int:
         return True
     else:
         return False
@@ -40,7 +41,7 @@ def check_code(instr):
     #check len stuff first 
     #check rest of inputs
     if check_reg_or_num(instr[1][0]) and check_reg_or_num(instr[1][1]):
-        if instr[1][2] in regs:
+        if instr[1][2] in exadata.regs:
             return True
         else:
             return ValueError(f'not a valid register destination')
@@ -50,15 +51,15 @@ def check_code(instr):
 #COPY R/N R
 def copy(num,reg):
     '''Copy the value of the first operand into the second operand'''
-    regs[reg] = num
-    return regs[reg]
+    exadata.regs[reg] = num
+    return exadata.regs[reg]
 
 #ADDI R/N R/N R
 def addi(num1,num2,reg):
     '''Add the value of the first operand to the value of the second operand and
         store the result in the third operand'''
-    regs[reg] = num1 + num2
-    return regs[reg]
+    exadata.regs[reg] = num1 + num2
+    return exadata.regs[reg]
 
 #`SUBI R/N R/N R`  
   
