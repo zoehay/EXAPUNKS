@@ -8,15 +8,26 @@ import sys
 #regs = {'X': 0,  'T': 0, 'F': 0}
 #codes = ['copy', 'addi', 'subi', 'multi', 'divi', 'modi']
 
-instructions = '''COPY 70 X
-ADDI X 1 X
-COPY 3 T
-MULI T X T
-SUBI T 1 T'''
+instructions = '''COPY 647 X
+MODI X 7 T
+DIVI X T X
+MULI T T T
+MULI X T X
+MULI T T T
+ADDI X T X
+DIVI T 9 T
+ADDI X 3 X
+ADDI T X T
+ADDI T X X
+SUBI X T T
+SUBI X T X
+SUBI X T X'''
 
 list_instructions = exafunc.read_lines(instructions)
 print(list_instructions)
 
-
+for instruction in list_instructions:
+    exafunc.validate_instructions(instruction)
+    print('processing:', instruction)
 
 print(sys.argv[0])
