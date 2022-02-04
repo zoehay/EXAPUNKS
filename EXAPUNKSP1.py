@@ -7,8 +7,6 @@ def processInput(inputstring):
     inputstring.split()
     print(inputstring)
 
-processInput(COPY 70 X)
-
 def validate_instructions(instr):
     if instr[0] in codes:
         pass
@@ -17,10 +15,11 @@ def validate_instructions(instr):
     #check case of copy
     if instr[0] == 'copy':
         if instr[1]:
-            valid input
+            pass
+            #valid input
         else:
              'Invalid args'
-    if #its one of the other instructions
+     #else its one of the other instructions
 
 
 #COPY R/N R

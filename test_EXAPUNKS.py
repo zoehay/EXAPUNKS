@@ -1,6 +1,7 @@
 #from re import X
 #from tempfile import TemporaryFile 
-
+#import EXAPUNKS_functions
+from codecs import register
 from EXAPUNKS_functions import *
 #from EXAPUNKS_functions import regs, copy, addi
 
@@ -24,7 +25,7 @@ def test_muli():
     assert muli(regs['T'], regs['X'], regs['T']) == regs['T'] * regs['X']
 
 def test_divi():
-    assert div(regs['T'], regs['X'], regs['T']) == regs['T'] / regs['X']
+    assert divi(regs['T'], regs['X'], regs['T']) == regs['T'] / regs['X']
 
 def test_modi():
     assert modi(regs['X'], 2, regs['T']) == regs['X'] % 2
@@ -35,7 +36,7 @@ def test_modi():
     # test invalid code
 def test_invalid_code_gernerates_exception():
     try:
-        copy('hello', 1, reg['X'])
+        copy('hello', 1, regs['X'])
     except ValueError:
         assert True 
 
